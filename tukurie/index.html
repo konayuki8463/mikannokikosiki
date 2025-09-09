@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>TUKURIE | MAKE OUR LIFE!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="千葉・君津のシェア工房TUKURIE。木工、レザークラフト、デジタル工作、電子工作ができるクリエイティブスペース。">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --base: #F7F9FC;
+      --accent: #FF7F50;
+      --secondary: #FFA726;
+      --warm: #FF9800;
+      --text: #333;
+      --text-light: #666;
+      --border: #E0E0E0;
+      --white: #FFFFFF;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      color: var(--text);
+      background: var(--base);
+      line-height: 1.6;
+    }
+
+    /* -------- Container & Utility -------- */
+    .container {
+      width: min(90%, 1200px);
+      margin-inline: auto;
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* -------- Header -------- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(247, 249, 252, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--accent);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* -------- Hero Section -------- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/hero-bg.jpg') center/cover;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero .catchphrase {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    /* -------- About Section -------- */
+    .about {
+      background: white;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      text-align: left;
+    }
+
+    /* -------- Services Grid -------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .service-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .service-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background: #f5f5f5;
+    }
+
+    /* -------- CTA Section -------- */
+    .cta {
+      background: var(--warm);
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .cta .section-title {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta .section-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--warm);
+      border: 2px solid var(--white);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--warm);
+    }
+
+    /* -------- Equipment Section -------- */
+    .equipment {
+      background: var(--base);
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .equipment-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .equipment-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .equipment-item h4 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .equipment-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background: #f5f5f5;
+    }
+
+    /* -------- Pricing Section -------- */
+    .pricing {
+      background: white;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      background: var(--base);
+      padding: 2.5rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 3px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--accent);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .price-unit {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+
+    /* -------- Workshop Section -------- */
+    .workshop {
+      background: linear-gradient(135deg, var(--warm) 0%, var(--accent) 100%);
+      color: white;
+    }
+
+    .workshop .section-title {
+      color: white;
+    }
+
+    .workshop-notice {
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .event-list {
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .event-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .event-date {
+      color: var(--warm);
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .event-title {
+      margin: 0;
+    }
+
+    /* -------- Access Section -------- */
+    .access {
+      background: white;
+    }
+
+    .access-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .access-info h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .access-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .map-container {
+      flex: 1;
+      min-height: 300px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 300px;
+      background: var(--base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    /* -------- Footer -------- */
+    footer {
+      background: var(--text);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #555;
+      padding-top: 1rem;
+      text-align: center;
+      color: #ccc;
+    }
+
+    /* -------- Responsive -------- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .catchphrase {
+        font-size: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .access-content {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="#hero" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1 style="font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;">TukuriE</h1>
+      <p class="catchphrase" style="font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;">MAKE OUR LIFE!</p>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <div class="container">
+      <p class="section-subtitle" style="font-weight: 600; margin-bottom: 1rem;">TukuriE Concept</p>
+      <h2 class="section-title">暮らしを、自分らしく編集する。<br>みんなのアトリエ。</h2>
+      <div class="about-content">
+        <div class="about-text" style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+          <p style="margin-bottom: 1.5rem;">
+            「なにか、つくりたい」<br>
+            「暮らしのなかに、手づくりの何かがあったら素敵だな」
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            そんな風に思う気持ちは、あなたの毎日をもっと豊かに、もっと色鮮やかにしてくれる「ひらめき」や「わくわく」です。
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            <strong style="color: #FF7F50; font-size: 1.2rem;">つくる喜びを、暮らしのなかに。</strong><br>
+            わたしたちの工房「TukuriE（ツクリエ）」は、あなたの暮らしを、あなたらしく「編集」し、「つくる楽しみ」を届けるための場所。
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            この名前には、なにかを「創る」楽しさと、光が差し込む「アトリエ」のような空間でありたい、という願いを込めています。
+          </p>
+          <p style="margin-bottom: 0;">
+            <strong style="color: #FF7F50; font-size: 1.2rem;">もうひとつの、リビング。</strong><br>
+            特別なスキルや知識がなくても大丈夫。ここは、立派な工房というより、あなたの暮らしのすぐとなりにある、"もうひとつのリビング"のような場所です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">TukuriEでできること</h2>
+      <p class="section-subtitle">多彩なクリエイティブ活動をサポートします</p>
+      <div class="services-grid">
+        <div class="service-item">
+          <img src="images/services/digital-craft.jpg" alt="デジタル工作" class="service-image">
+          <h3>デジタル工作</h3>
+          <p>レーザーカッターや3Dプリンターで精密加工</p>
+        </div>
+        <div class="service-item">
+          <img src="images/services/electronics.jpg" alt="電子工作" class="service-image">
+          <h3>電子工作</h3>
+          <p>センサーやLEDを使った電子工作</p>
+        </div>
+        <div class="service-item">
+          <img src="images/services/woodwork.jpg" alt="木工" class="service-image">
+          <h3>木工</h3>
+          <p>電動工具を使った本格的な木工作品づくり</p>
+        </div>
+        <div class="service-item">
+          <img src="images/services/workspace.jpg" alt="活動拠点" class="service-image">
+          <h3>活動拠点</h3>
+          <p>作家・クリエイターの制作スペースやワークショップ会場などとしてご利用いただけます。Wi-Fi・電源完備でコワーキングスペースとしても利用可能</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container">
+      <h2 class="section-title">作り始めよう！</h2>
+      <p class="section-subtitle">まずは施設見学（無料）からお気軽にどうぞ</p>
+      <div class="cta-buttons">
+        <a href="guide.html" class="btn btn-primary">ご利用ガイドを見る</a>
+        <a href="contact.html" class="btn btn-secondary">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // ヘッダーの背景透明度調整
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(247, 249, 252, 0.98)';
+      } else {
+        header.style.background = 'rgba(247, 249, 252, 0.95)';
+      }
+    });
+
+    // ハンバーガーメニューの動作
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      
+      // ボディのスクロールを禁止/許可
+      if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // モバイルナビのリンクをクリックしたときにメニューを閉じる
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // モバイルナビの背景をクリックしたときにメニューを閉じる
+    mobileNav.addEventListener('click', function(e) {
+      if (e.target === mobileNav) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

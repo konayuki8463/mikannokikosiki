@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>施設の紹介 - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* ページ固有のスタイル */
+    /* about.html固有のpage-headerスタイル（オレンジグラデーション） */
+    .page-header {
+      background: linear-gradient(135deg, #FF7F50, #FFA726);
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* -------- Facility Overview -------- */
+    .facility-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .overview-card {
+      background: var(--base);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .overview-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .overview-card h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* -------- Feature Grid -------- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .feature-item {
+      background: var(--base);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      border-left: 4px solid var(--accent);
+    }
+
+    .feature-item i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h5 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* -------- Concept Section -------- */
+    .concept-section {
+      background: white;
+      color: #333;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin: 2rem 0;
+      border: 2px solid var(--border);
+    }
+
+    .concept-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    .concept-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    /* -------- Stats Section -------- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2rem;
+      background: var(--base);
+      border-radius: 15px;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* -------- Gallery Section -------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 2rem 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-item {
+      aspect-ratio: 16/10;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    /* 共通CSSで定義済みのため削除 */
+
+    /* -------- Philosophy Section -------- */
+    .philosophy-section {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    
+    .philosophy-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dark);
+      text-align: left;
+    }
+
+    /* -------- Responsive -------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .facility-overview {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-card {
+        text-align: center;
+      }
+
+      .equipment-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .philosophy-section {
+        text-align: left;
+      }
+      
+      .philosophy-text {
+        text-align: left;
+        font-size: 1rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">施設の紹介</h1>
+        <p class="page-subtitle">TukuriEの特徴と魅力をご紹介します</p>
+      </div>
+    </div>
+
+    <!-- TukuriEとは -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">TukuriEとは</h2>
+        <div class="section-content">
+          <div class="concept-section">
+            <h3>MAKE OUR LIFE!</h3>
+            <p>
+              わたしたちの工房「TukuriE（ツクリエ）」は、特別なスキルや知識がなくても、誰もが気軽にものづくりを楽しめる場所です。<br><br>
+              「なにか、つくりたい」<br>
+              「暮らしのなかに、手づくりの何かがあったら素敵だな」<br><br>
+              そんな風に思うあなたの「ひらめき」をカタチにするために、レーザーカッターや3Dプリンターといったデジタル工作機器から、温かみのある木工道具まで、様々な設備をご用意しています。<br><br>
+              ここは、立派な工房というより、あなたの暮らしのすぐとなりにある、"もうひとつのリビング"のような場所。<br><br>
+              特別な日じゃなくても、散歩のついでに、買い物帰りに、ふらっと立ち寄ってみてください。<br>
+              あなたの「ちょっとやってみたい」という気持ちをサポートします。<br><br>
+              一緒に「つくる暮らし」を楽しみましょう！
+            </p>
+            <div style="margin-top: 2rem;">
+              <a href="guide.html" class="btn btn-white">ご利用ガイドを見る</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 施設の特徴 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">施設の特徴</h2>
+        <div class="facility-overview">
+          <div class="overview-card">
+            <i class="fas fa-tools"></i>
+            <h4>充実した設備</h4>
+            <p>レーザーカッター、3Dプリンター、各種電動工具などの工作機材を完備。初心者から上級者まで満足いただける環境です。</p>
+          </div>
+          <div class="overview-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h4>安心のサポート</h4>
+            <p>機器の使い方から作品制作まで、経験豊富なスタッフが丁寧にサポート。初めての方も安心してご利用いただけます。</p>
+          </div>
+          <div class="overview-card">
+            <i class="fas fa-users"></i>
+            <h4>コミュニティ</h4>
+            <p>同じ趣味を持つ仲間との出会いや、ワークショップを通じた学びの場。創作活動を通じて新しいつながりが生まれます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 利用できるサービス -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">利用できるサービス</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <i class="fas fa-laptop"></i>
+            <h5>デジタル工作</h5>
+            <p>レーザーカッターや3Dプリンターで精密加工</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-microchip"></i>
+            <h5>電子工作</h5>
+            <p>センサーやLEDを使った電子工作</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-hammer"></i>
+            <h5>木工</h5>
+            <p>電動工具を使った本格的な木工作品づくり</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <h5>活動拠点</h5>
+            <p>作家・クリエイターの制作スペース。Wi-Fi・電源完備でコワーキングスペースとしても利用可能</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- 施設ギャラリー -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">施設ギャラリー</h2>
+        <div class="simple-gallery">
+          <div class="gallery-image">
+            <img src="images/gallery/工房スペース.jpg" alt="施設画像 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="gallery-placeholder" style="display: none;">
+              <div>
+                <i class="fas fa-tools" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i><br>
+                施設画像 1
+              </div>
+            </div>
+          </div>
+          <div class="gallery-image">
+            <img src="images/gallery/工房スペース2.jpg" alt="施設画像 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="gallery-placeholder" style="display: none;">
+              <div>
+                <i class="fas fa-tools" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i><br>
+                施設画像 2
+              </div>
+            </div>
+          </div>
+          <div class="gallery-image">
+            <img src="images/gallery/コミュニティスペース.jpg" alt="施設画像 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="gallery-placeholder" style="display: none;">
+              <div>
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i><br>
+                施設画像 3
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 運営理念 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">運営理念</h2>
+        <div class="section-content">
+          <div class="philosophy-section">
+            <h3 style="color: var(--accent); margin-bottom: 1rem; text-align: center;">創造性を育み、つながりを生む場所</h3>
+            <p class="philosophy-text">
+              私たちは、ものづくりを通じて人々の創造性を引き出し、新しいアイデアや技術を学び合えるコミュニティを目指しています。<br><br>
+              
+              初心者から専門家まで、誰もが安心して利用でき、お互いの知識や経験を共有しながら成長できる環境を提供します。<br><br>
+              
+              TukuriEから生まれる作品や出会いが、より豊かな社会の実現につながることを願っています。
+            </p>
+          </div>
+          
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="contact.html" class="btn btn-accent">見学のお申し込み</a>
+            <a href="guide.html" class="btn">利用方法を見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ヘッダーの背景透明度調整
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(247, 249, 252, 0.98)';
+      } else {
+        header.style.background = 'rgba(247, 249, 252, 0.95)';
+      }
+    });
+
+    // ハンバーガーメニューの制御
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const body = document.body;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    });
+
+    // モバイルナビのリンククリック時にメニューを閉じる
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+
+    // モバイルナビの背景クリック時にメニューを閉じる
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+  </script>
+</body>
+</html>

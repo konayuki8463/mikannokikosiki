@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カレンダー - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    :root {
+      --base: #F7F9FC;
+      --accent: #FF7F50;
+      --secondary: #FFA726;
+      --warm: #FF9800;
+      --text: #333;
+      --text-light: #666;
+      --border: #E0E0E0;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--base);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* -------- Header -------- */
+    header {
+      background: rgba(247, 249, 252, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* -------- Main Content -------- */
+    main {
+      margin-top: 80px;
+      padding: 2rem 0;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 0;
+      background: white;
+      margin-bottom: 2rem;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      padding: 3rem 0;
+      background: white;
+      margin-bottom: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* -------- Calendar Container -------- */
+    .calendar-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .calendar-embed {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* -------- Legend -------- */
+    .calendar-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--base);
+      border-radius: 10px;
+    }
+
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    .legend-available {
+      background: #4CAF50;
+    }
+
+    .legend-workshop {
+      background: var(--accent);
+    }
+
+    .legend-reserved {
+      background: var(--secondary);
+    }
+
+    .legend-closed {
+      background: #9E9E9E;
+    }
+
+    /* -------- Info Cards -------- */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .info-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* -------- Operating Hours -------- */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .hours-table th,
+    .hours-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .hours-table th {
+      background: var(--accent);
+      color: white;
+      font-weight: 500;
+    }
+
+    .hours-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .hours-table tr:nth-child(even) {
+      background: var(--base);
+    }
+
+    /* -------- Buttons -------- */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid var(--accent);
+      margin: 0.5rem;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-accent:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* -------- Footer -------- */
+    footer {
+      background: var(--text);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #555;
+      padding-top: 1rem;
+      text-align: center;
+      color: #ccc;
+    }
+
+    /* -------- Responsive -------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .calendar-embed {
+        height: 400px;
+      }
+
+      .calendar-container {
+        padding: 1rem;
+      }
+
+      .hours-table th,
+      .hours-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">カレンダー</h1>
+        <p class="page-subtitle">予約状況とイベントスケジュール</p>
+      </div>
+    </div>
+
+    <!-- カレンダー -->
+    <section class="section">
+      <div class="container">
+        <div class="calendar-container">
+          <h2 class="section-title">予約・イベントカレンダー</h2>
+          <p style="color: var(--text-light); margin-bottom: 2rem;">
+            空き状況をご確認の上、公式LINEまたはお問い合わせフォームよりご予約ください
+          </p>
+          
+          <!-- Googleカレンダー埋め込み -->
+          <iframe 
+            src="https://calendar.google.com/calendar/embed?src=tukurie.share%40gmail.com&ctz=Asia%2FTokyo" 
+            class="calendar-embed"
+            title="TukuriE予約カレンダー">
+          </iframe>
+          
+          <!-- カレンダーが表示されない場合の代替テキスト -->
+          <div style="text-align: center; margin-top: 1rem;">
+            <p style="color: var(--text-light); font-size: 0.9rem;">
+              カレンダーが表示されない場合は、公式LINEまたはお問い合わせフォームよりお気軽にお尋ねください
+            </p>
+          </div>
+        </div>
+
+        <!-- カレンダー凡例 -->
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-color legend-available"></div>
+            <div>
+              <strong>利用可能</strong><br>
+              <small>予約受付中</small>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color legend-workshop"></div>
+            <div>
+              <strong>ワークショップ</strong><br>
+              <small>イベント開催中</small>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color legend-reserved"></div>
+            <div>
+              <strong>予約済み</strong><br>
+              <small>利用不可</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 予約に関する情報 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">ご予約について</h2>
+        <div class="info-cards">
+          <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <h4>予約受付時間</h4>
+            <p>2週間前から施設予約フォームにてご予約を承ります。当日予約は公式LINEやメールでお問い合わせください。</p>
+          </div>
+          <div class="info-card">
+            <i class="fas fa-calendar-check"></i>
+            <h4>予約の変更・キャンセル</h4>
+            <p>ご予約の変更・キャンセルは、利用日の前日までにご連絡ください。</p>
+          </div>
+          <div class="info-card">
+            <i class="fas fa-users"></i>
+            <h4>グループ利用</h4>
+            <p>5名以上でのご利用の場合は、事前にご相談ください。貸切利用も承ります。</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="contact.html" class="btn btn-accent">
+            <i class="fas fa-phone"></i> 予約・お問い合わせ
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ヘッダーの背景透明度調整
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(247, 249, 252, 0.98)';
+      } else {
+        header.style.background = 'rgba(247, 249, 252, 0.95)';
+      }
+    });
+
+    // ハンバーガーメニューの制御
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const body = document.body;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    });
+
+    // モバイルナビのリンククリック時にメニューを閉じる
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+
+    // モバイルナビの背景クリック時にメニューを閉じる
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+  </script>
+</body>
+</html>

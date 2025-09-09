@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>機器利用料 - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">機器利用料</h1>
+        <p class="page-subtitle">各種機器の利用料金表</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-content">
+          <div style="text-align: center; padding: 4rem 2rem;">
+            <i class="fas fa-table" style="font-size: 4rem; color: var(--accent); margin-bottom: 2rem;"></i>
+            <h2 style="color: var(--accent); margin-bottom: 2rem;">機器利用料表</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">
+              こちらのページには機器利用料の詳細な料金表が表示される予定です。<br>
+              現在準備中です。
+            </p>
+            <a href="guide.html" class="btn btn-accent">
+              <i class="fas fa-arrow-left"></i> ご利用ガイドに戻る
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+        </div>
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ヘッダーの背景透明度調整
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(247, 249, 252, 0.98)';
+      } else {
+        header.style.background = 'rgba(247, 249, 252, 0.95)';
+      }
+    });
+
+    // ハンバーガーメニューの動作
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      
+      if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    mobileNav.addEventListener('click', function(e) {
+      if (e.target === mobileNav) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

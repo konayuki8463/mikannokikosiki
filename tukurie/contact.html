@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* ページ固有のスタイル */
+    /* contact.html固有のpage-headerスタイル（オレンジグラデーション） */
+    .page-header {
+      background: linear-gradient(135deg, #FF7F50, #FFA726);
+    }
+
+    /* contact.html固有のスタイル */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .contact-card {
+      background: var(--base);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .contact-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .contact-card .contact-info {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card .contact-hours {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .access-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .access-card {
+      background: var(--base);
+      padding: 2rem;
+      border-radius: 15px;
+    }
+
+    .access-card h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .access-card i {
+      color: var(--accent);
+    }
+
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    /* フォームカードのスタイル */
+    .form-link-card {
+      background: var(--base);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .form-link-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .form-icon {
+      margin-bottom: 1rem;
+    }
+
+    .form-icon i {
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    .form-link-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* PC版のみ中央揃え */
+    @media (min-width: 769px) {
+      .form-link-card {
+        text-align: center;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">お問い合わせ</h1>
+        <p class="page-subtitle">ご質問・ご予約はお気軽にどうぞ</p>
+      </div>
+    </div>
+
+    <!-- 連絡先情報 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">連絡先</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <i class="fab fa-line"></i>
+            <h4>公式LINE</h4>
+            <div class="contact-info">
+              <a href="https://lin.ee/7R4jze1" target="_blank" style="color: var(--accent); text-decoration: none;">@tukurie</a>
+            </div>
+            <div class="contact-hours">24時間受付（返信は2日以内）</div>
+            <div style="margin-top: 1rem;">
+              <a href="https://lin.ee/7R4jze1"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <h4>メール</h4>
+            <div class="contact-info">
+              <a href="mailto:tukurie.share@gmail.com" style="color: var(--accent); text-decoration: none;">tukurie.share@gmail.com</a>
+            </div>
+            <div class="contact-hours">24時間受付（返信は2日以内）</div>
+          </div>
+          <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="contact-card" style="cursor: pointer; transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+              <i class="fab fa-instagram"></i>
+              <h4>Instagram</h4>
+              <div class="contact-info" style="color: var(--accent);">@tukurie.share</div>
+              <div class="contact-hours">DMでもお気軽にどうぞ</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">お問い合わせフォーム</h2>
+        <div class="section-content">
+          <div class="form-link-card">
+            <div class="form-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>一般的なお問い合わせ</h3>
+            <p>施設に関するご質問、ワークショップのお問い合わせなど</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3AAC_GZf-9Ee5q8gkMaer4xAD2PDek9O2ik_PjcYwhSMD8Q/viewform?usp=header" target="_blank" class="btn btn-accent btn-large">
+              <i class="fas fa-external-link-alt"></i> Googleフォームでお問い合わせ
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 施設予約フォーム -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">施設予約フォーム</h2>
+        <div class="section-content">
+          <div class="form-link-card">
+            <div class="form-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3>TukuriE 施設予約</h3>
+            <p>3Dプリンター、レーザーカッターなどの機器使用予約</p>
+            <a href="https://docs.google.com/forms/d/1batqIqbUnzzse9zF58c_YjM8wrjd_fV7lEdIjYy0bGs/viewform" target="_blank" class="btn btn-accent btn-large">
+              <i class="fas fa-external-link-alt"></i> Googleフォームで予約
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- アクセス情報 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">アクセス</h2>
+        <div class="access-info">
+          <div class="access-card">
+            <h4><i class="fas fa-map-marker-alt"></i> 住所</h4>
+            <p>〒299-1173<br>
+            千葉県君津市市宿375</p>
+            
+            <h4 style="margin-top: 2rem;"><i class="fas fa-train"></i> 最寄り駅</h4>
+            <p>JR内房線「君津駅」車で約25分<br>
+            君津駅南口から日東交通バス周西線「市宿中」下車　バス停前</p>
+            
+            <h4 style="margin-top: 2rem;"><i class="fas fa-car"></i> 駐車場</h4>
+            <p>無料駐車場あり（約3台）<br>
+            予約時に駐車場利用の旨をお伝えください</p>
+          </div>
+          
+          <div class="access-card">
+            <h4><i class="fas fa-map"></i> 地図</h4>
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d993.9569303040632!2d139.9908526988688!3d35.26631661244064!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601809e1198f9c4b%3A0xc323d1e7dafd3df5!2sTukuriE!5e0!3m2!1sja!2sjp!4v1757030305837!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+              <a href="https://www.google.com/maps/place/%E3%80%92292-1153+%E5%8D%83%E8%91%89%E7%9C%8C%E5%90%9B%E6%B4%A5%E5%B8%82%E5%B8%82%E5%AE%BF%EF%BC%93%EF%BC%97%EF%BC%95/@35.2663763,139.9885001,17z/data=!3m1!4b1!4m6!3m5!1s0x6018087107ae7043:0x4632881761264205!8m2!3d35.2663763!4d139.991075!16s%2Fg%2F11c1q7v8zr?entry=ttu" target="_blank" class="btn" style="background: white; color: #333; border: 2px solid #333;">
+                <i class="fas fa-external-link-alt"></i> Googleマップで開く
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- アクセス画像 -->
+        <div class="access-image-container" style="margin-top: 4rem; margin-bottom: 2rem;">
+          <div style="max-width: 800px; margin: 0 auto; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+            <img src="images/contact/アクセス画像.jpg" alt="TukuriE施設外観" style="width: 100%; height: 400px; object-fit: cover; display: block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display: none; width: 100%; height: 400px; background: linear-gradient(135deg, #f5f5f5, #e8e8e8); align-items: center; justify-content: center; color: #999; font-size: 1.2rem;">
+              <div style="text-align: center;">
+                <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i><br>
+                画像準備中
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // ヘッダーの背景透明度調整
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+          header.style.background = 'rgba(247, 249, 252, 0.98)';
+        } else {
+          header.style.background = 'rgba(247, 249, 252, 0.95)';
+        }
+      });
+
+      // フォーム送信処理
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('お問い合わせを受け付けました。ありがとうございます。\n営業時間内にご返信いたします。');
+        });
+      }
+
+      // ハンバーガーメニューの制御
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const body = document.body;
+
+      if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          mobileNav.classList.toggle('active');
+          body.classList.toggle('menu-open');
+        });
+
+        // モバイルナビのリンクをクリックしたときにメニューを閉じる
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+          });
+        });
+
+        // 背景をクリックしたときにメニューを閉じる
+        mobileNav.addEventListener('click', function(e) {
+          if (e.target === mobileNav) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

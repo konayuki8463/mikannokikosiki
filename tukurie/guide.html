@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご利用ガイド - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    :root {
+      --base: #F7F9FC;
+      --accent: #FF7F50;
+      --secondary: #FFA726;
+      --warm: #FF9800;
+      --text: #333;
+      --text-light: #666;
+      --border: #E0E0E0;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--base);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* -------- Header -------- */
+    header {
+      background: rgba(247, 249, 252, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* -------- Main Content -------- */
+    main {
+      margin-top: 80px;
+      padding: 2rem 0;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 0;
+      background: white;
+      margin-bottom: 2rem;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      margin-bottom: 2rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      padding: 3rem 0;
+      background: white;
+      margin-bottom: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* -------- Flow Steps -------- */
+    .flow-steps {
+      display: grid;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: var(--base);
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .step-number {
+      background: var(--accent);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .step-content h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* -------- Pricing -------- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .pricing-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .price-unit {
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    /* -------- Equipment Grid -------- */
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .equipment-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .equipment-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .equipment-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background: #f5f5f5;
+    }
+
+    .equipment-item h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .equipment-item i {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+
+    /* -------- Rules -------- */
+    .rules-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .rules-list li {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: var(--base);
+      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .rules-list li strong {
+      color: var(--accent);
+    }
+
+    /* -------- Buttons -------- */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid var(--accent);
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-accent:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* -------- Footer -------- */
+    footer {
+      background: var(--text);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #555;
+      padding-top: 1rem;
+      text-align: center;
+      color: #ccc;
+    }
+
+    /* -------- Responsive -------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .flow-step {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+      
+      .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      
+      .step-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">ご利用ガイド</h1>
+        <p class="page-subtitle">TukuriEの利用方法をご案内します</p>
+      </div>
+    </div>
+
+    <!-- 利用の流れ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">利用の流れ</h2>
+        <div class="section-content">
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>施設見学（無料）</h3>
+                <p>まずは施設を見学していただき、どんな設備があるかご確認ください。スタッフが丁寧にご案内いたします。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>施設の予約</h3>
+                <p>ご利用には事前予約が必要です。</p>
+                <div style="margin-top: 1rem;">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSejQi_6_UpNR87Z82kxW9Rb82hnFjVxIQWbIG3I_VgdE7Omiw/viewform" target="_blank" class="btn btn-accent">
+                    <i class="fas fa-calendar-check"></i> 施設・機器予約フォーム
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>機器講習の受講</h3>
+                <p>安全にご利用いただくため、オプション機器の使用については講習を受講していただきます。初心者の方も安心してご参加ください。</p>
+                <div style="margin-top: 1rem;">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdV9oPDAYjtapwUIBwkA-HMUa0zRycGCogCwhdB9zSWozF8Nw/viewform?usp=header" target="_blank" class="btn btn-accent">
+                    <i class="fas fa-graduation-cap"></i> 機器講習申し込みフォーム
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3>予約・利用開始</h3>
+                <p>カレンダーから空いている時間を確認し、ご予約ください。予約後、工房をご利用いただけます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 利用料金 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">利用料金</h2>
+        <div class="section-content">
+          <div style="margin-bottom: 3rem;">
+            <h3 style="text-align: center; color: var(--accent); margin-bottom: 2rem;">基本使用料</h3>
+            <div class="table-placeholder">
+              <img src="images/pricing/basic-usage-fee.jpg" alt="基本使用料表" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </div>
+          </div>
+          
+          <div>
+            <h3 style="text-align: center; color: var(--accent); margin-bottom: 2rem;">機器利用料</h3>
+            <div class="table-placeholder">
+              <img src="images/pricing/equipment-usage-fee.jpg" alt="機器利用料表" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 機械や道具 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">機器や道具</h2>
+        <p style="color: var(--text-light); margin-bottom: 2rem;">プロ仕様の機材から初心者向けの工具まで、幅広く取り揃えています</p>
+        <div class="equipment-grid">
+          <a href="https://note.com/tukurie_share/n/n80d7ca99636c" target="_blank" class="equipment-item">
+            <img src="images/equipment/laser-cutter.jpg" alt="レーザーカッター" class="equipment-image">
+            <h4><i class="fas fa-burn"></i> レーザーカッター</h4>
+            <p>木材やアクリル板を、データ通りに精密にカット・彫刻できます。</p>
+          </a>
+          <a href="https://note.com/tukurie_share/n/n2b7c575103ae" target="_blank" class="equipment-item">
+            <img src="images/equipment/3d-printer.jpg" alt="3Dプリンター" class="equipment-image">
+            <h4><i class="fas fa-cube"></i> 3Dプリンター</h4>
+            <p>3Dデータから、立体的な造形物を樹脂で作り出すことができます。</p>
+          </a>
+          <a href="https://note.com/tukurie_share/n/n97b2b9e812f0" target="_blank" class="equipment-item">
+            <img src="images/equipment/cutting-machine.jpg" alt="カッティングマシン" class="equipment-image">
+            <h4><i class="fas fa-cut"></i> カッティングマシン</h4>
+            <p>ステッカーやアイロンプリント用のシートを、好きな形にカットできます。</p>
+          </a>
+          <a href="https://note.com/tukurie_share/n/nfafdf745ffea" target="_blank" class="equipment-item">
+            <img src="images/equipment/electric-tools.jpg" alt="各種電動工具" class="equipment-image">
+            <h4><i class="fas fa-tools"></i> 各種電動工具</h4>
+            <p>DIYの基本的な作業ができる、ドリルやサンダーなどを揃えています。</p>
+          </a>
+          <a href="https://note.com/tukurie_share/n/nfffa0c289469" target="_blank" class="equipment-item">
+            <img src="images/equipment/design-pc.jpg" alt="デザインPC" class="equipment-image">
+            <h4><i class="fas fa-desktop"></i> デザインPC</h4>
+            <p>CAD、グラフィックデザインソフトを完備したパソコンをご利用いただけます。</p>
+          </a>
+          <a href="https://note.com/tukurie_share/n/n3b551664577f" target="_blank" class="equipment-item">
+            <img src="images/equipment/badge-machine.jpg" alt="缶バッジマシン" class="equipment-image">
+            <h4><i class="fas fa-certificate"></i> 缶バッジマシン</h4>
+            <p>好きなイラストや写真で、オリジナルの缶バッジがその場で作れます。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 予約方法 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">予約方法</h2>
+        <div class="section-content">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <p>ご利用には事前予約が必要です。以下の方法でご予約ください。</p>
+          </div>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="step-number"><i class="fas fa-calendar"></i></div>
+              <div class="step-content">
+                <h3>カレンダーで空き状況を確認</h3>
+                <p>まずはカレンダーページで、ご希望の日時の空き状況をご確認ください。</p>
+                <div style="margin-top: 1rem; text-align: center;">
+                  <a href="calendar.html" class="btn btn-accent">
+                    <i class="fas fa-calendar-alt"></i> カレンダーを見る
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number"><i class="fas fa-phone"></i></div>
+              <div class="step-content">
+                <h3>施設予約フォーム</h3>
+                <p>空いている時間帯を確認後、施設予約フォームでご予約ください。</p>
+                <div style="margin-top: 1rem; text-align: center;">
+                  <a href="https://docs.google.com/forms/d/1batqIqbUnzzse9zF58c_YjM8wrjd_fV7lEdIjYy0bGs/viewform" target="_blank" class="btn btn-accent">
+                    <i class="fas fa-calendar-check"></i> 施設予約フォーム
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ヘッダーの背景透明度調整
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(247, 249, 252, 0.98)';
+      } else {
+        header.style.background = 'rgba(247, 249, 252, 0.95)';
+      }
+    });
+
+    // ハンバーガーメニューの動作
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      
+      // ボディのスクロールを禁止/許可
+      if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // モバイルナビのリンクをクリックしたときにメニューを閉じる
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // モバイルナビの背景をクリックしたときにメニューを閉じる
+    mobileNav.addEventListener('click', function(e) {
+      if (e.target === mobileNav) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ワークショップ - TukuriE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* ページ固有のスタイル */
+    /* workshop2.html固有のpage-headerスタイル（オレンジグラデーション） */
+    .page-header {
+      background: linear-gradient(135deg, #FF7F50, #FFA726);
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .workshop-card {
+      background: var(--base);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+
+
+    .workshop-card h3 {
+      text-align: center;
+    }
+
+    .workshop-card i {
+      display: block;
+      text-align: center;
+    }
+
+    .workshop-card .btn-primary {
+      display: block;
+      text-align: center;
+      margin: 1rem auto 0;
+      width: fit-content;
+    }
+
+    .workshop-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .workshop-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #e65100;
+      transform: translateY(-2px);
+    }
+
+    /* 画像枠のスタイル */
+    .workshop-image {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      background: #f5f5f5;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem auto;
+      color: #999;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .workshop-image {
+        height: 200px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex-between">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="TukuriE" style="height: 40px;"></a>
+      <nav>
+        <ul>
+          <li><a href="about.html">施設の紹介</a></li>
+          <li><a href="guide.html">ご利用ガイド</a></li>
+          <li><a href="workshop2.html">ワークショップ</a></li>
+          <li><a href="calendar.html">カレンダー</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- ハンバーガーメニューボタン -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビゲーション -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="about.html">施設の紹介</a></li>
+      <li><a href="guide.html">ご利用ガイド</a></li>
+      <li><a href="workshop2.html">ワークショップ</a></li>
+      <li><a href="calendar.html">カレンダー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">ワークショップ</h1>
+        <p class="page-subtitle">TukuriEで開催される各種ワークショップ・イベント情報</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-content">
+          <!-- ワークショップ画像枠 -->
+          <div class="workshop-image">
+            <img src="images/workshop/workshop-main.jpg" alt="ワークショップの様子" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          
+          <!-- インスタグラム案内 -->
+          <div class="workshop-card">
+            <i class="fab fa-instagram"></i>
+            <h3>ワークショップ情報はインスタグラムで発信</h3>
+            <p>TukuriEで開催されるワークショップやイベントの最新情報は、公式インスタグラムアカウントで発信しています。フォローして最新情報をチェックしてください。</p>
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" class="btn-primary">
+              <i class="fab fa-instagram"></i> インスタグラムを見る
+            </a>
+          </div>
+
+          <!-- 初回機器講習案内 -->
+          <div class="workshop-card" style="margin-top: 3rem;">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>初回機器講習のご案内</h3>
+            <p>TukuriEの機器を初めてご利用いただく方は、安全に機器を使用していただくために、初回機器講習の受講が必要です。下記フォームよりお申し込みください。</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdV9oPDAYjtapwUIBwkA-HMUa0zRycGCogCwhdB9zSWozF8Nw/viewform?usp=header" target="_blank" class="btn-primary">
+              <i class="fas fa-edit"></i> 初回機器講習を申し込む
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>運営法人</h4>
+          <p>一般社団法人みかんの木</p>
+          <!-- 法人サイト完成後にリンク有効化
+          <a href="../index.html">一般社団法人みかんの木</a>
+          -->
+        </div>
+        <div class="footer-section">
+          <h4>みかんの木の他サービス</h4>
+          <p style="color: #ccc;">各サービスサイト準備中</p>
+          <!-- 各サービスサイト完成後に有効化
+          <a href="../studio.html">Creative Studio</a>
+          <a href="../lab.html">Technology Lab</a>
+          <a href="workshop2.html">Workshop</a>
+          <a href="../community.html">Community Support</a>
+          -->
+        <div class="footer-section">
+          <h4>TukuriE SNS</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tukurie.share?igsh=YWN6emVkMmR5ZzNm&utm_source=qr" target="_blank" aria-label="Instagram"><img src="images/icons/instagram.png" alt="Instagram" style="width: 20px; height: 20px; object-fit: contain;"></a>
+            <a href="https://note.com/tukurie_share" target="_blank" aria-label="note"><img src="images/icons/note.png" alt="note" style="width: 20px; height: 20px; object-fit: contain;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; TukuriE by MIKAN no KI</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // ハンバーガーメニューの制御
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const body = document.body;
+
+      if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          mobileNav.classList.toggle('active');
+          body.classList.toggle('menu-open');
+        });
+
+        // モバイルナビのリンクをクリックしたときにメニューを閉じる
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+          });
+        });
+
+        // 背景をクリックしたときにメニューを閉じる
+        mobileNav.addEventListener('click', function(e) {
+          if (e.target === mobileNav) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

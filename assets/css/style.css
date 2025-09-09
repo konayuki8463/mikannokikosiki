@@ -1,0 +1,911 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --base: #F7F9FC;
+  --accent: #FF7F50;
+  --text: #333;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background: var(--base);
+  line-height: 1.6;
+}
+
+/* -------- Container & Utility -------- */
+.container {
+  width: min(90%, 960px);
+  margin-inline: auto;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* -------- Header -------- */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--base);
+  border-bottom: 2px solid var(--accent);
+  z-index: 1000;
+}
+
+header .logo a {
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 1.2rem;
+  font-weight: 600;
+  transition: color .2s;
+}
+
+.nav-list li a:hover {
+  color: var(--accent);
+}
+
+/* -------- Hero -------- */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: var(--base);
+  padding-top: 80px; /* header offset */
+}
+
+/* コンセプトヒーロー：TukuriEページ用 */
+.concept-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1554188248-986adbb73be4?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  padding-top: 80px; /* header offset */
+}
+
+.concept-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.concept-hero .hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.catch {
+  font-size: clamp(2rem, 7vw, 4rem);
+  margin: 0;
+  color: var(--accent);
+}
+
+.subcatch {
+  margin-top: .5rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.scroll-down {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: var(--accent);
+  animation: bounce 1.8s infinite;
+  text-decoration: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+/* -------- Sections -------- */
+.section {
+  padding: 80px 0;
+  margin-top: 80px; /* compensate fixed header overlap */
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+/* -------- Vision -------- */
+.vision-text {
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* -------- Services Grid -------- */
+.services-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform .2s, box-shadow .2s;
+  /* ↓↓↓ 以下3行を追記 ↓↓↓ */
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 1.5rem; /* 下部に余白を追加 */
+}
+
+.card .btn {
+  margin-top: auto;      /* ボタンをカードの最下部に配置 */
+  align-self: center;  /* ボタン自体を中央揃えに */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card h4 {
+  margin: .8rem 1rem 0;
+  font-size: 1.2rem;
+}
+
+.card-desc {
+  margin: .3rem 1rem 1.2rem;
+  font-size: .95rem;
+  color: #666;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* -------- About -------- */
+.about-list {
+  list-style: none;
+  padding: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.about-list li {
+  padding: .6rem 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+/* -------- Contact -------- */
+.email {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.email a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sns-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.sns-icons img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform .2s;
+}
+
+.sns-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* -------- Footer -------- */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background: var(--base);
+  font-size: .9rem;
+  border-top: 2px solid var(--accent);
+}
+
+/* -------- Responsive (≥960px) -------- */
+@media (min-width: 960px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========== ここから下層ページ用スタイル ========== */
+
+/* ページ上部のタイトル */
+.page-hero {
+  padding-top: 120px; /* ヘッダー分を考慮 */
+  padding-bottom: 40px;
+  text-align: center;
+  background: #fff;
+  margin-top: 0;
+}
+.page-title {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin: 0;
+}
+.page-subtitle {
+  font-size: 1.2rem;
+  margin-top: .5rem;
+}
+
+/* セクション背景色 */
+.bg-light {
+  background: #fff;
+}
+
+/* 下層ページ用セクションタイトル */
+.section-title-sub {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+/* 特徴・強み */
+.features-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.feature-item {
+  text-align: center;
+}
+.feature-item h4 {
+  font-size: 1.2rem;
+}
+
+/* こんな方におすすめリスト */
+.recommend-list {
+  list-style: '✔ ';
+  padding-left: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.recommend-list li {
+  padding: .5rem 0;
+}
+
+/* 料金プラン */
+.pricing-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.plan-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.plan-card h4 {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+.price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: .5rem 0;
+}
+.price span {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.plan-desc {
+  color: #666;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+.plan-features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.plan-features li {
+  padding: .5rem 0;
+  border-bottom: 1px dashed #eee;
+}
+.plan-features li::before {
+  content: '✓';
+  color: var(--accent);
+  margin-right: .5rem;
+}
+.pricing-note {
+  text-align: center;
+  font-size: .9rem;
+  color: #666;
+}
+
+/* ボタン */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: .8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity .2s;
+  margin-top: auto; /* カード内でボタンを下に揃える */
+}
+.btn:hover {
+  opacity: 0.8;
+}
+.btn.btn-large {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+}
+
+/* 制作の流れ */
+.flow-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  counter-reset: flow-counter;
+}
+.flow-list li {
+  position: relative;
+  padding: 1rem 0 1rem 4rem;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+.flow-list li span {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+/* FAQ */
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-item {
+  margin-bottom: 1.5rem;
+}
+.faq-item h4 {
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: .5rem;
+  margin-bottom: .8rem;
+}
+
+/* CTAセクション */
+.cta-section {
+    background: #fff;
+    text-align: center;
+}
+.cta-section p {
+    margin-bottom: 2rem;
+}
+
+/* ========== オプション料金 ========== */
+.options-section {
+  max-width: 600px;
+  margin: 2.5rem auto 0;
+  padding-top: 2rem;
+  border-top: 2px dashed #ddd;
+}
+.options-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.options-list {
+  background: #fff;
+  border-radius: 8px;
+  padding: .5rem 1.5rem;
+  border: 1px solid #ddd;
+}
+.option-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .8rem 0;
+}
+.option-item:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+.option-name {
+  margin: 0;
+  font-weight: 600;
+}
+.option-price {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+.option-price span {
+  font-size: .9rem;
+  font-weight: 400;
+}
+
+/* ========== Makerspace紹介セクション ========== */
+.makerspace-content {
+  display: grid;
+  align-items: center;
+  gap: 2rem;
+}
+.makerspace-img img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.makerspace-text h4 {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-top: 0;
+}
+.makerspace-text .btn {
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .makerspace-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* TukuriEページ追加CSS
+  ================================================ */
+
+/* --- 色の定義（変更しやすくするため） --- */
+:root {
+  --primary-color: #F57C00; /* 温かいオレンジ色 */
+  --dark-text: #333;
+  --light-text: #555;
+  --light-gray-bg: #f7f7f7;
+  --white-bg: #fff;
+  --border-color: #ddd;
+}
+
+/* --- 基本設定の微調整 --- */
+.text-center {
+  text-align: center;
+}
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.section-title-sub2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+.btn {
+  /* 既存のbtnスタイルがあれば、ここは不要 */
+  display: inline-block;
+  padding: 10px 30px;
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: opacity 0.3s;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* --- 1. ファーストビュー --- */
+.hero-sub {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* --- イメージセクション --- */
+.image-section {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 60px 0;
+}
+
+.image-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.image-section-text {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 20px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* --- テキストセクション --- */
+.text-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.text-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+.text-section .concept-lead {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.text-section .highlight {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* --- 2. コンセプト紹介 --- */
+.story-box {
+  background: var(--light-gray-bg);
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-left: 5px solid var(--primary-color);
+  text-align: left;
+  display: inline-block;
+  line-height: 1.8;
+}
+
+/* --- 3. ここでできること --- */
+.equipment-grid, .gallery-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.equipment-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  text-align: center;
+}
+.equipment-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+
+/* --- 4. こんな方へ --- */
+.recommend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.recommend-list li {
+  background: var(--light-gray-bg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+.recommend-list .check {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* --- 5. ご利用の流れと料金 --- */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+.step-item span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.price-card {
+  background: var(--white-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+.price-card h5 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.price-card .price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+.price-card .price span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--light-text);
+}
+.price-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.price-card li {
+  margin-bottom: 0.5rem;
+}
+
+
+/* --- 6. ワークショップ情報 --- */
+.event-list {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  border-top: 1px solid var(--border-color);
+}
+.event-item {
+  display: flex;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: 1.5rem;
+}
+.event-date {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.event-title {
+  font-weight: 600;
+}
+
+/* --- 7. 行動を促す最後のひと押し（CTA） --- */
+#cta {
+  background: var(--light-gray-bg); /* index.htmlのbg-lightと同じならこの行は不要 */
+}
+#cta p {
+  margin-bottom: 2rem;
+}
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* makerspace.html のコンセプトセクション用に追加
+  ================================================ */
+
+/* リード文（導入文）のスタイル */
+#concept .lead {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #555; /* 通常のテキストより少しだけ濃く、でも強すぎない色 */
+}
+
+/* 「もうひとつのリビング」を囲むボックスのスタイル */
+#concept .story-box {
+  background: #f7f7f7; /* サイト全体のライトな背景色に合わせる */
+  padding: 2rem;
+  margin: 2.5rem auto;
+  border-left: 5px solid #F57C00; /* メインカラーのオレンジでアクセント */
+  max-width: 700px;
+  border-radius: 0 8px 8px 0;
+}
+#concept .story-box p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.9;
+}
+#concept .story-box strong {
+  font-size: 1.25rem;
+  color: #F57C00; /* 強調部分もメインカラーで */
+}
+
+/* 最後のメッセージのスタイル */
+#concept .final-message {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+}
+
+.hero-sub {
+  /* 既存のスタイルはそのまま */
+  height: auto; /* heightをautoに変更 */
+  min-height: 60vh; /* 画面の高さの60%を最低限の高さとする */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* 「暮らしの編集」具体例セクション */
+.example-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 2rem;
+}
+
+.example-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform .3s, box-shadow .3s;
+}
+
+.example-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.example-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.example-item h4 {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin: 1.2rem 1.5rem 0.8rem;
+  position: relative;
+  padding-bottom: 0.6rem;
+}
+
+.example-item h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent);
+}
+
+.example-item p {
+  font-size: 1rem;
+  color: #555;
+  padding: 0 1.5rem 1.8rem;
+  line-height: 1.7;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .example-grid {
+    gap: 1.5rem;
+  }
+  
+  .example-item h4 {
+    font-size: 1.2rem;
+    margin: 1rem 1.2rem 0.6rem;
+  }
+  
+  .example-item p {
+    font-size: 0.95rem;
+    padding: 0 1.2rem 1.5rem;
+  }
+}
